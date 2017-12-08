@@ -304,12 +304,13 @@ def problem0c(circle, n, window):
     diameter = circle.radius*2
     c = circle.center
     x = c.x + diameter
+    window.render(.5)
     for k in range(n):
         c = rg.Point(x, c.y)
         circle = rg.Circle(c, circle.radius)
         circle.attach_to(window)
         x = x + diameter
-    window.render(.5)
+        window.render(.5)
 
     # ------------------------------------------------------------------
     # DONE: 4. Implement and test this function.

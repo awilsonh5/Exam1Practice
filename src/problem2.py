@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Andrew Wilson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -101,8 +101,25 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    rcorner = rectangle.get_upper_right_corner()
+    lcorner = rectangle.get_lower_left_corner()
+    line = rg.Line(rcorner, lcorner)
+    line.arrow = 'last'
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
+
+
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +127,7 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -172,6 +190,21 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+
+    corn1 = rg.Point((rect.get_upper_left_corner()).x, (rect.get_upper_left_corner()).y)
+    corn2 = rg.Point((rect.get_lower_right_corner()).x, (rect.get_lower_right_corner()).y)
+
+    for k in range(n+1):
+        rect.attach_to(win)
+        corn1x = corner1x - (2*delta)
+        corner2x = corner2x + (2*delta)
+        corner1y = corner1y - (2*delta)
+        corner2y = corner2y + (2*delta)
+        corner1 = (corn1x, corn1y)
+        corner2 = (corn2x, corn2y)
+        rect = rg.Rectangle((corn1x, corn1y), (corn2x, corn2y))
+        rect.attach_to(win)
+    win.render()
     # ------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #          Tests have been written for you (above).
