@@ -193,20 +193,25 @@ def problem2b(rect, n, delta, win):
 
     corn1 = rg.Point((rect.get_upper_left_corner()).x, (rect.get_upper_left_corner()).y)
     corn2 = rg.Point((rect.get_lower_right_corner()).x, (rect.get_lower_right_corner()).y)
-
-    for k in range(n+1):
+    rect.attach_to(win)
+    corn1x = corn1.x - delta
+    corn2x = corn2.x + delta
+    corn1y = corn1.y - delta
+    corn2y = corn2.y + delta
+    x = delta
+    for k in range(n-1):
+        corn1x = corn1.x - x
+        corn2x = corn2.x + x
+        corn1y = corn1.y - x
+        corn2y = corn2.y + x
+        corner1 = rg.Point(corn1x, corn1y)
+        corner2 = rg.Point(corn2x, corn2y)
+        rect = rg.Rectangle(corner1, corner2)
         rect.attach_to(win)
-        corn1x = corner1x - (2*delta)
-        corner2x = corner2x + (2*delta)
-        corner1y = corner1y - (2*delta)
-        corner2y = corner2y + (2*delta)
-        corner1 = (corn1x, corn1y)
-        corner2 = (corn2x, corn2y)
-        rect = rg.Rectangle((corn1x, corn1y), (corn2x, corn2y))
-        rect.attach_to(win)
+        x = x + delta
     win.render()
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
