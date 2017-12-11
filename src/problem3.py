@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Andrew Wilson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -85,6 +85,7 @@ def run_test_problem3a():
 
     # Window 3:
     title = 'Problem 3a. Test 4: Start at (30, 30), 20 lines'
+    title += '  Test 5: (40, 40) 5 lines'
     window3 = rg.RoseWindow(450, 300, title)
 
     # Test 4 (it is on window 3):
@@ -95,13 +96,21 @@ def run_test_problem3a():
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
-    window3.close_on_mouse_click()
-
     # ------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment (or integrated with one of the above tests,
     # your choice), add 1 more test case of your own choosing.
     # ------------------------------------------------------------------
+
+    # Test 5
+    point = rg.Point(40, 40)
+    expected = 25
+    answer = problem3a(window3, point, 5)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    window3.close_on_mouse_click()
 
 
 def problem3a(window, point, n):
@@ -136,8 +145,32 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    total = 0
+
+    x1 = point.x
+    y1 = point.y
+    x2 = x1
+    y2 = y1+50
+    t = 1
+
+    for k in range(n):
+        start = rg.Point(x1, y1)
+        end = rg.Point(x2, y2)
+        line = rg.Line(start, end)
+        line.thickness = t
+        line.attach_to(window)
+        x1 = x1 + 20
+        y1 = y1 + 10
+        x2 = x2 + 20
+        y2 = y2 + 10
+        total = total + t
+        if t <= 12:
+            t = t + 2
+    window.render()
+    return total
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
